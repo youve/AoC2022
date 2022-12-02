@@ -6,6 +6,6 @@ Written in awk
 
 Task | Solution | Comments
 ---  | ---      | ---
-Day 01 | [01-calorie-counting/solve.awk](01-calorie-counting/solve.awk) | How many calories are carried by the top elf/elves?
-
+Day 01 | [01-calorie-counting](01-calorie-counting/solve.awk) | How many calories are carried by the top elf/elves?
+Day 02 | [02-rock-paper-scissors](02-rock-paper-scissors/solve.awk) | Evaluating rock paper scissors strategies
 
