@@ -1,5 +1,6 @@
 #!/bin/gawk -f
 
+# https://adventofcode.com/2022/day/3
 # Find the items that appear in both halves of the string
 # And sum their values
 # a-z = 1-26
