@@ -6,7 +6,7 @@
 # a-z = 1-26
 # A-Z = 27-52
 
-@include "../lib/ord.awk"
+@include "ord.awk"
 BEGIN {
     _ord_init()
     a = ord("a") # 97
