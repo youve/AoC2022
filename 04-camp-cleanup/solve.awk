@@ -6,7 +6,6 @@
 
 BEGIN {
     FS = ","
-    part_1_accumulator = 0
 }
 
 function is_range_inside_other_range(first_elf, second_elf) {
