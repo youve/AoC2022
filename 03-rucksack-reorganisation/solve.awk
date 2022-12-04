@@ -8,7 +8,6 @@
 
 @include "ord.awk"
 BEGIN {
-    _ord_init()
     a = ord("a") # 97
     z = ord("z")
     A = ord("A") # 65
