@@ -10,4 +10,4 @@ Day 01 | [01-calorie-counting](01-calorie-counting/solve.awk) | How many calorie
 Day 02 | [02-rock-paper-scissors](02-rock-paper-scissors/solve.awk) | Evaluating rock paper scissors strategies
 Day 03 | [03-rucksack-reorganisation](03-rucksack-reorganisation/solve.awk) | Finding characters in common between strings
 Day 04 | [04-camp-cleanup](04-camp-cleanup/solve.awk) | Determining whether, and to what extent, ranges overlap
-
+Day 05 | [05-supply-stacks](05-supply-stacks/solve.awk) | Stack manipulation
