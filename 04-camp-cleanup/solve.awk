@@ -8,7 +8,7 @@ BEGIN {
     FS = ","
 }
 
-function is_range_inside_other_range(first_elf, second_elf) {
+function is_range_inside_other_range(first_elf, second_elf,        first_range, second_range, seps) {
     # parameters are both strings in format "int-int"
     # return an int because it turns out that in awk you can't sum booleans
     split(first_elf, first_range, "-", seps)
@@ -40,7 +40,7 @@ function is_range_inside_other_range(first_elf, second_elf) {
     }
 }
 
-function do_ranges_overlap_at_all(first_elf, second_elf) {
+function do_ranges_overlap_at_all(first_elf, second_elf,    first_range, second_range, seps) {
     # parameters are both strings in format "int-int"
     # return an int because it turns out that in awk you can't sum booleans
     split(first_elf, first_range, "-", seps)

@@ -14,7 +14,7 @@ BEGIN {
     Z = ord("Z")
 }
 
-function solve_part_1() {
+function solve_part_1(      compartment_size, first_half, second_half, i) {
     compartment_size = length($0) / 2
     first_half = substr($0, 0, compartment_size)
     second_half = substr($0, compartment_size + 1)
@@ -31,7 +31,7 @@ function solve_part_1() {
     }
 }
 
-function solve_part_2(first_sack, second_sack, third_sack) {
+function solve_part_2(first_sack, second_sack, third_sack,     i) {
 
     for (i = A; i <= z; i++) {
         if (index(first_sack, chr(i)) > 0 && index(second_sack, chr(i)) > 0 && index(third_sack, chr(i)) > 0) {
