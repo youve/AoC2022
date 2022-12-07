@@ -2,50 +2,60 @@
 
 # https://adventofcode.com/2022/day/5
 
-@include "join.awk"
 function move_boxes_one_at_a_time(line,    arr, amount, src, dest, i) {
+    # given a line like move 3 from 2 to 1,
+    # move `amount` boxes from `src` to `dest`
+    # one at a time, so that the orders are reversed
     split(line, arr, /[a-z ]*/)
     amount = arr[2]
     src = arr[3]
     dest = arr[4]
 
     for (i = 0; i < amount; i++) {
-        print "Before:"
-        inspect_stacks()
         push(stacks, dest, pop(stacks, src))
-        print "After:"
-        inspect_stacks()
-        print "============="
     }
 }
 
 
 function move_boxes(line,    arr, amount, src, dest, i) {
+    # given a line like move 3 from 2 to 1,
+    # move `amount` boxes from `src` to `dest`
+    # without reordering the boxes during the move.
     split(line, arr, /[a-z ]*/)
     amount = arr[2]
     src = arr[3]
     dest = arr[4]
 
-    print "Before:"
-    inspect_stacks()
     push_many(stacks, dest, pop_many(stacks, src, amount))
-    print "After:"
-    inspect_stacks()
-    print "============="
 }
 
-function push(arr, i, new_item) {
+function push(arr, i, new_item,    new_index) {
+    # push `new_item` onto the `i`th subarray of the
+    # multidimensional array `arr`
     new_index = get_arr_length(arr,i) + 1
     arr[i,new_index] = new_item
 }
 
-function push_many(arr, i, new_arr) {
+function push_many(arr, i, str,     new_arr, j) {
+    # push the contents of `str` onto the `i`th subarray of the
+    # multidimensional array `arr`
+    # str accepts a string because awk can't return an array
+    # so that push_many can accept the return value of pop_many
+    # but it also accepts an array
+    if (typeof(str) == "string") {
+        split(str, new_arr)
+    }
+    else {
+        new_arr = str
+    }
     for (j = 1; j <= length(new_arr); j++) {
         push(arr, i, new_arr[j])
     }
 }
 
-function get_arr_length(arr, i) {
+function get_arr_length(arr, i,     j) {
+    # return the length of the `i`th subarray of the multidimensional
+    # array `arr`
     j = 1
     while (length(arr[i,j]) > 0) {
         j++
@@ -54,20 +64,25 @@ function get_arr_length(arr, i) {
 }
 
 function pop(arr, i,    ret) {
+    # pop from the `i`'th subarray in the multidimenisonal array `arr`
+    # return a string
     ret = arr[i,get_arr_length(arr, i)]
     arr[i,get_arr_length(arr, i)] = ""
     return ret
 }
 
-function pop_many(arr, i, amount,    str, ret_arr) {
+function pop_many(arr, i, amount,    j, str) {
+    # pop the last `amount` items from the `i`'th subarray in the
+    # multidimensional array `arr`
+    # returns a string because awk can't return arrays
     for (j = 0; j < amount; j++) {
         str = pop(arr, i) " " str
     }
-    split(str, ret_arr)
-    return ret_arr
+    return str
 }
 
-function inspect_stacks(      line) {
+function inspect_stacks(      i, j, line) {
+    # print a multidimensional array for inspection
     for (i = 1; i < 10; i++) {
         line = ""
         for (j = 1; j < 30; j++) {
@@ -75,15 +90,14 @@ function inspect_stacks(      line) {
         }
         print i " " line
     }
-}
-
-BEGIN {
+    print ""
 }
 
 /move/ {
-    move_boxes_one_at_a_time($0)
-    # doesn't work yet
-    # move_boxes($0)
+    # Part 1: 
+    # move_boxes_one_at_a_time($0)
+    # Part 2:
+    move_boxes($0)
 }
 
 !/move/ {
@@ -110,6 +124,8 @@ BEGIN {
             stacks[i,j] = temp[j]
         }
     }
+    print "Starting arrangement: "
+    inspect_stacks()
 }
 
 END {
@@ -118,9 +134,9 @@ END {
     answer = ""
     for (i = 0; i < 10; i++) {
         top = stacks[i,get_arr_length(stacks,i)]
-        # gsub(/[ \t]+$/, "" top)
         answer = answer top
     }
+    print "Final arrangement:"
     inspect_stacks()
     print answer
 }
