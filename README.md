@@ -12,3 +12,4 @@ Day 03 | [03-rucksack-reorganisation](03-rucksack-reorganisation/solve.awk) | Fi
 Day 04 | [04-camp-cleanup](04-camp-cleanup/solve.awk) | Determining whether, and to what extent, ranges overlap
 Day 05 | [05-supply-stacks](05-supply-stacks/solve.awk) | Stack manipulation
 Day 06 | [06-tuning-trouble](06-tuning-trouble/solve.awk) | Find a run of unique characters
+Day 07 | [07-no-space-left-on-device](07-no-space-left-on-device/solve.awk) | Parse output of cd and ls into a directory tree and find files of a certain size.
